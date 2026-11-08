@@ -1,6 +1,8 @@
 package model;
 
 import framework.util.Hash;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 
 public class Usuario {
     private int id;
@@ -46,7 +48,7 @@ public class Usuario {
         return senha;
     }
 
-    public void setSenha(String senha) {
+    public void setSenha(String senha) throws NoSuchAlgorithmException,  UnsupportedEncodingException{
         if( senha == null ) {
             throw new IllegalArgumentException("senha não pode ser null");
         }
