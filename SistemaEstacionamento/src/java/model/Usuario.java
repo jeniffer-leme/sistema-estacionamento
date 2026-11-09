@@ -33,6 +33,9 @@ public class Usuario {
     }
 
     public void setNome(String nome) {
+        if( nome == null ) {
+            throw new IllegalArgumentException("nome não pode null");
+        }
         this.nome = nome;
     }
 
@@ -41,6 +44,9 @@ public class Usuario {
     }
 
     public void setEmail(String email) {
+        if( email == null ) {
+            throw new IllegalArgumentException("email não pode null");
+        }
         this.email = email;
     }
 
