@@ -15,15 +15,14 @@ public class ClienteDAO extends DataAccessObject <Cliente> {
     public void insert(Cliente t) throws Exception {
         Connection connection = DataBaseConnections.getInstance().getConnection();
         
-        String dml = "INSERT INTO cliente (id, nome, cpf, telefone, email) values (?, ?, ?, ?, ?)";
+        String dml = "INSERT INTO cliente (nome, cpf, telefone, email) values (?, ?, ?, ?, ?)";
         
         PreparedStatement preparedStatement = connection.prepareStatement(dml);
         
-        preparedStatement.setInt( 1, t.getId() );
-        preparedStatement.setString( 2, t.getNome() );
-        preparedStatement.setString( 3, t.getCpf());
-        preparedStatement.setString(4, t.getTelefone());
-        preparedStatement.setString( 5, t.getEmail());
+        preparedStatement.setString( 1, t.getNome() );
+        preparedStatement.setString( 2, t.getCpf());
+        preparedStatement.setString(3, t.getTelefone());
+        preparedStatement.setString( 4, t.getEmail());
         
         if( AppConfig.getInstance().getConfig("settings", "verbose").equals("true") ) {
             System.out.println(preparedStatement);
