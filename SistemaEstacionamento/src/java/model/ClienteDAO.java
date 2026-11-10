@@ -15,7 +15,7 @@ public class ClienteDAO extends DataAccessObject <Cliente> {
     public void insert(Cliente t) throws Exception {
         Connection connection = DataBaseConnections.getInstance().getConnection();
         
-        String dml = "INSERT INTO cliente (nome, cpf, telefone, email) values (?, ?, ?, ?, ?)";
+        String dml = "INSERT INTO cliente (nome, cpf, telefone, email) values (?, ?, ?, ?)";
         
         PreparedStatement preparedStatement = connection.prepareStatement(dml);
         

@@ -43,7 +43,7 @@ public class VeiculoDAO extends DataAccessObject <Veiculo> {
         
         Connection connection = DataBaseConnections.getInstance().getConnection();
         
-        String dml = "UPDATE veiculo SET id = ?, placa = ?, modelo = ?, cor = ?, tipo = ?, cliente_id = ? WHERE id = ?";
+        String dml = "UPDATE veiculo SET placa = ?, modelo = ?, cor = ?, tipo = ?, cliente_id = ? WHERE id = ?";
         
         PreparedStatement preparedStatement = connection.prepareStatement(dml);
         

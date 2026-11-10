@@ -15,7 +15,7 @@ public class UsuarioDAO extends DataAccessObject <Usuario> {
     public void insert(Usuario t) throws Exception {
         Connection connection = DataBaseConnections.getInstance().getConnection();
         
-        String dml = "INSERT INTO usuario (nome, email, senha, perfil) values (?, ?, ?, ?, ?)";
+        String dml = "INSERT INTO usuario (nome, email, senha, perfil) values (?, ?, ?, ?)";
         
         PreparedStatement preparedStatement = connection.prepareStatement(dml);
         
