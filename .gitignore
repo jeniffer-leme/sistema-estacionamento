@@ -23,3 +23,5 @@
 hs_err_pid*
 replay_pid*
 /SistemaEstacionamento/nbproject/private/
+/SistemaEstacionamento/build/
+/SistemaEstacionamento/dist/
