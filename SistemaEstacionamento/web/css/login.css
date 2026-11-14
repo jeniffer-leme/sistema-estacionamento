@@ -1,0 +1,141 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0f1b3d 0%, #1b2f6b 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    color: #1b2236;
+}
+
+/* Cartão */
+.login-card {
+    width: 100%;
+    max-width: 390px;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(27, 34, 54, 0.12);
+}
+
+/* Cabeçalho azul com faixa amarela */
+.login-topo {
+    background: #1946c9;
+    color: #fff;
+    text-align: center;
+    padding: 28px 20px 24px;
+    border-bottom: 5px solid #f2c230;
+}
+
+.logo {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 12px;
+    border: 3px solid #fff;
+    border-radius: 12px;
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 50px;
+}
+
+h1 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* Corpo do formulário */
+.login-corpo {
+    padding: 28px 32px 32px;
+}
+
+.alert {
+    background: #fdecea;
+    color: #b3261e;
+    border-left: 4px solid #b3261e;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #444;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1.5px solid #d3d6dd;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+    border-color: #1946c9;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(25, 70, 201, 0.18);
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 13px;
+    margin-top: 6px;
+    background: #1946c9;
+    color: #fff;
+    border: none;
+    border-bottom: 3px solid #11308f;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-submit:hover {
+    background: #1c4ee0;
+}
+
+/* Campo de senha com botão de mostrar/ocultar */
+.senha-campo {
+    position: relative;
+}
+
+.senha-campo input {
+    padding-right: 85px;
+}
+
+.btn-ver {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 7px 12px;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: #1946c9;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-ver:hover {
+    background: #eef2ff;
+}
