@@ -25,7 +25,7 @@ public class VeiculoDAO extends DataAccessObject <Veiculo> {
         preparedStatement.setString( 3, t.getCor());
         preparedStatement.setString( 4, t.getTipo());
         
-        preparedStatement.setObject( 5, t.getClienteId());
+        preparedStatement.setInt(5, t.getClienteId());
         
         if( AppConfig.getInstance().getConfig("settings", "verbose").equals("true") ) {
             System.out.println(preparedStatement);
@@ -52,7 +52,7 @@ public class VeiculoDAO extends DataAccessObject <Veiculo> {
         preparedStatement.setString( 3, t.getCor());
         preparedStatement.setString( 4, t.getTipo());
         
-        preparedStatement.setObject( 5, t.getClienteId());
+        preparedStatement.setInt( 5, t.getClienteId());
         
         preparedStatement.setInt( 6, t.getId() );
         
@@ -119,12 +119,7 @@ public class VeiculoDAO extends DataAccessObject <Veiculo> {
             resultado.setCor((String) resultSet.getObject(4) );
             resultado.setTipo((String) resultSet.getObject(5) );
             
-            if( resultSet.getObject(6) == null )  {
-                resultado.setClienteId(null );
-            } else {
-                resultado.setClienteId( (int) resultSet.getObject(6) );
-            }
-            
+            resultado.setClienteId((int) resultSet.getObject(6) );
         }
         
         resultSet.close();
@@ -157,14 +152,9 @@ public class VeiculoDAO extends DataAccessObject <Veiculo> {
             veiculo.setCor((String) resultSet.getObject(4) );
             veiculo.setTipo((String) resultSet.getObject(5) );
             
-            if( resultSet.getObject(6) == null )  {
-                veiculo.setClienteId(null );
-            } else {
-                veiculo.setClienteId( (int) resultSet.getObject(6) );
-            }
+            veiculo.setClienteId((int) resultSet.getObject(6) );
             
             resultado.add(veiculo);
-            
         }
         
         resultSet.close();

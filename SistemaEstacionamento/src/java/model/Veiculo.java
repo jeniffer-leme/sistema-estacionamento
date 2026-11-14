@@ -6,7 +6,7 @@ public class Veiculo {
     private String modelo;
     private String cor;
     private String tipo;
-    private Integer clienteId;
+    private int clienteId;
 
     public Veiculo(int id) {
         setId(id);
@@ -68,11 +68,11 @@ public class Veiculo {
         this.tipo = tipo;
     }
 
-    public Integer getClienteId() {
+    public int getClienteId() {
         return clienteId;
     }
 
-    public void setClienteId(Integer clienteId) {
+    public void setClienteId(int clienteId) {
         if( clienteId < 0 ) {
             throw new IllegalArgumentException("clienteId não pode ser < 0");
         }

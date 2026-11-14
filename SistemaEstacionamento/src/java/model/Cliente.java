@@ -61,11 +61,7 @@ public class Cliente {
     }
 
     public void setEmail(String email) {
-        if( email == null ) {
-            throw new IllegalArgumentException("email não pode null");
-        }
         this.email = email;
     }
-    
     
 }

@@ -20,9 +20,9 @@ public class MovimentacaoDAO extends DataAccessObject <Movimentacao> {
         
         PreparedStatement preparedStatement = connection.prepareStatement(dml);
         
-        preparedStatement.setObject(1, t.getVeiculoId());
-        preparedStatement.setObject( 2, t.getVagaId());
-        preparedStatement.setObject( 3, t.getUsuarioId());
+        preparedStatement.setInt(1, t.getVeiculoId());
+        preparedStatement.setInt( 2, t.getVagaId());
+        preparedStatement.setInt( 3, t.getUsuarioId());
         
         preparedStatement.setString( 4, t.getDataEntrada());
         preparedStatement.setString( 5, t.getDataSaida());
@@ -50,14 +50,16 @@ public class MovimentacaoDAO extends DataAccessObject <Movimentacao> {
         
         PreparedStatement preparedStatement = connection.prepareStatement(dml);
         
-        preparedStatement.setString( 1, t.getPlaca());
-        preparedStatement.setString( 2, t.getModelo());
-        preparedStatement.setString( 3, t.getCor());
-        preparedStatement.setString( 4, t.getTipo());
+        preparedStatement.setInt(1, t.getVeiculoId());
+        preparedStatement.setInt( 2, t.getVagaId());
+        preparedStatement.setInt( 3, t.getUsuarioId());
         
-        preparedStatement.setObject( 5, t.getClienteId());
+        preparedStatement.setString( 4, t.getDataEntrada());
+        preparedStatement.setString( 5, t.getDataSaida());
         
-        preparedStatement.setInt( 6, t.getId() );
+        preparedStatement.setDouble(6, t.getValor());
+        
+        preparedStatement.setInt(7, t.getId());
         
         if( AppConfig.getInstance().getConfig("settings", "verbose").equals("true") ) {
             System.out.println(preparedStatement);
@@ -117,15 +119,19 @@ public class MovimentacaoDAO extends DataAccessObject <Movimentacao> {
             
             resultado = new Movimentacao( (int) resultSet.getObject(1) );
             
-            resultado.setPlaca((String) resultSet.getObject(2) );
-            resultado.setModelo((String) resultSet.getObject(3) );
-            resultado.setCor((String) resultSet.getObject(4) );
-            resultado.setTipo((String) resultSet.getObject(5) );
+            resultado.setVeiculoId((int) resultSet.getObject(2) );
+            resultado.setVagaId((int) resultSet.getObject(3) );
+            resultado.setUsuarioId((int) resultSet.getObject(4) );
             
-            if( resultSet.getObject(6) == null )  {
-                resultado.setClienteId(null );
-            } else {
-                resultado.setClienteId( (int) resultSet.getObject(6) );
+            resultado.setDataEntrada((String) resultSet.getObject(5) );
+            
+            if( resultSet.getObject(6) != null ) { // date para string
+                resultado.setDataSaida(resultSet.getObject(6).toString() ); // 'nascimento date' na tabela (tratar da mesma forma para outros campos não 'varchar', como 'hour'
+            }
+            
+            if( resultSet.getObject(7) != null ) {
+                float aux = (float) resultSet.getObject(7);
+                resultado.setValor( aux );
             }
             
         }
@@ -155,16 +161,20 @@ public class MovimentacaoDAO extends DataAccessObject <Movimentacao> {
             
             Movimentacao movimentacao = new Movimentacao( (int) resultSet.getObject( 1 ) );
             
-            movimentacao.setPlaca((String) resultSet.getObject( 2 ) );
-            movimentacao.setModelo((String) resultSet.getObject( 3 ) );
-            movimentacao.setCor((String) resultSet.getObject(4) );
-            movimentacao.setTipo((String) resultSet.getObject(5) );
+            movimentacao.setVeiculoId((int) resultSet.getObject(2) );
+            movimentacao.setVagaId((int) resultSet.getObject(3) );
+            movimentacao.setUsuarioId((int) resultSet.getObject(4) );
             
-            if( resultSet.getObject(6) == null )  {
-                movimentacao.setClienteId(null );
-            } else {
-                movimentacao.setClienteId( (int) resultSet.getObject(6) );
+            movimentacao.setDataEntrada((String) resultSet.getObject( 5 ) );
+            if( resultSet.getObject(6) != null ) {
+                movimentacao.setDataSaida(resultSet.getObject(6).toString() ); 
             }
+            
+            if( resultSet.getObject(7) != null ) {
+                float aux = (float) resultSet.getObject(7);
+                movimentacao.setValor( aux );
+            }
+            
             
             resultado.add(movimentacao);
             

@@ -77,6 +77,9 @@ public class Usuario {
     }
 
     public void setPerfil(String perfil) {
+        if( perfil == null ) {
+            throw new IllegalArgumentException("perfil não pode ser null");
+        }
         this.perfil = perfil;
     }
     

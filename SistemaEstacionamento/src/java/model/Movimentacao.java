@@ -2,9 +2,9 @@ package model;
 
 public class Movimentacao {
     private int id;
-    private Integer veiculoId;
-    private Integer vagaId;
-    private Integer usuarioId;
+    private int veiculoId;
+    private int vagaId;
+    private int usuarioId;
     private String dataEntrada;
     private String dataSaida;
     private double valor;
@@ -13,6 +13,7 @@ public class Movimentacao {
         setId(id);
     }
 
+    
     public int getId() {
         return id;
     }
@@ -24,33 +25,33 @@ public class Movimentacao {
         this.id = id;
     }
 
-    public Integer getVeiculoId() {
+    public int getVeiculoId() {
         return veiculoId;
     }
 
-    public void setVeiculoId(Integer veiculoId) {
+    public void setVeiculoId(int veiculoId) {
         if( veiculoId < 0 ) {
             throw new IllegalArgumentException("O id do veículo não pode ser < 0");
         }
         this.veiculoId = veiculoId;
     }
 
-    public Integer getVagaId() {
+    public int getVagaId() {
         return vagaId;
     }
 
-    public void setVagaId(Integer vagaId) {
+    public void setVagaId(int vagaId) {
         if( vagaId < 0 ) {
             throw new IllegalArgumentException("O id da vaga não pode ser < 0");
         }
         this.vagaId = vagaId;
     }
 
-    public Integer getUsuarioId() {
+    public int getUsuarioId() {
         return usuarioId;
     }
 
-    public void setUsuarioId(Integer usuarioId) {
+    public void setUsuarioId(int usuarioId) {
         if( usuarioId < 0 ) {
             throw new IllegalArgumentException("O id do usuário não pode ser < 0");
         }
@@ -73,9 +74,6 @@ public class Movimentacao {
     }
 
     public void setDataSaida(String dataSaida) {
-        if (dataSaida == null) {
-            throw new IllegalArgumentException("A data de saída não pode ser nula.");
-        }
         this.dataSaida = dataSaida;
     }
 
