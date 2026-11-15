@@ -15,7 +15,6 @@ body {
     color: #1b2236;
 }
 
-/* Cartão */
 .login-card {
     width: 100%;
     max-width: 390px;
@@ -25,7 +24,6 @@ body {
     box-shadow: 0 8px 24px rgba(27, 34, 54, 0.12);
 }
 
-/* Cabeçalho azul com faixa amarela */
 .login-topo {
     background: #1946c9;
     color: #fff;
@@ -50,7 +48,7 @@ h1 {
     font-weight: 600;
 }
 
-/* Corpo do formulário */
+/* Formulario */
 .login-corpo {
     padding: 28px 32px 32px;
 }
@@ -112,7 +110,7 @@ input:focus {
     background: #1c4ee0;
 }
 
-/* Campo de senha com botão de mostrar/ocultar */
+/* Senha */
 .senha-campo {
     position: relative;
 }
@@ -138,4 +136,21 @@ input:focus {
 
 .btn-ver:hover {
     background: #eef2ff;
+}
+
+
+
+/* Página de erro */
+.erro-texto {
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #444;
+    margin-bottom: 22px;
+}
+
+a.btn-submit {
+    display: block;
+    text-align: center;
+    text-decoration: none;
 }

@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%!
-    // Escapa texto para exibir com segurança dentro do HTML
+    //converter caracteres especiais da string em HTML
     private static String esc(String s) {
         if (s == null) return "";
         return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
@@ -33,7 +33,7 @@
         <div class="login-card">
 
             <div class="login-topo">
-                <div class="logo">P</div>
+                <div class="logo">E</div>
                 <h1>Acesso ao Sistema</h1>
             </div>
 
