@@ -9,22 +9,22 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class UsuarioDAO extends DataAccessObject <Usuario> {
+public class UsuarioDAO extends DataAccessObject<Usuario> {
 
     @Override
     public void insert(Usuario t) throws Exception {
         Connection connection = DataBaseConnections.getInstance().getConnection();
         
-        String dml = "INSERT INTO usuario (nome, email, senha, perfil) values (?, ?, ?, ?)";
+        String dml = "INSERT INTO usuario (nome, email, senha, id_tipo_usuario) values (?, ?, ?, ?)";
         
         PreparedStatement preparedStatement = connection.prepareStatement(dml);
         
-        preparedStatement.setString( 1, t.getNome() );
-        preparedStatement.setString( 2, t.getEmail());
-        preparedStatement.setString( 3, t.getSenha() );
-        preparedStatement.setString(4, t.getPerfil());
+        preparedStatement.setString(1, t.getNome());
+        preparedStatement.setString(2, t.getEmail());
+        preparedStatement.setString(3, t.getSenha());
+        preparedStatement.setInt(4, t.getTipoUsuarioId()); // Corrigido para Int e id_tipo_usuario
         
-        if( AppConfig.getInstance().getConfig("settings", "verbose").equals("true") ) {
+        if (AppConfig.getInstance().getConfig("settings", "verbose").equals("true")) {
             System.out.println(preparedStatement);
         }
         
@@ -38,18 +38,17 @@ public class UsuarioDAO extends DataAccessObject <Usuario> {
     public void update(Usuario t) throws Exception {
         Connection connection = DataBaseConnections.getInstance().getConnection();
         
-        String dml = "UPDATE usuario SET nome = ?, email = ?, senha = ?, perfil = ? WHERE id = ?";
+        String dml = "UPDATE usuario SET nome = ?, email = ?, senha = ?, id_tipo_usuario = ? WHERE id = ?";
         
         PreparedStatement preparedStatement = connection.prepareStatement(dml);
         
-        preparedStatement.setString( 1, t.getNome() );
-        preparedStatement.setString( 2, t.getEmail());
-        preparedStatement.setString( 3, t.getSenha() );
-        preparedStatement.setString(4, t.getPerfil());
+        preparedStatement.setString(1, t.getNome());
+        preparedStatement.setString(2, t.getEmail());
+        preparedStatement.setString(3, t.getSenha());
+        preparedStatement.setInt(4, t.getTipoUsuarioId()); // Corrigido para Int
+        preparedStatement.setInt(5, t.getId());
         
-        preparedStatement.setInt( 5, t.getId() );
-        
-        if( AppConfig.getInstance().getConfig("settings", "verbose").equals("true") ) {
+        if (AppConfig.getInstance().getConfig("settings", "verbose").equals("true")) {
             System.out.println(preparedStatement);
         }
         
@@ -67,9 +66,9 @@ public class UsuarioDAO extends DataAccessObject <Usuario> {
         
         PreparedStatement preparedStatement = connection.prepareStatement(dml);
         
-        preparedStatement.setInt( 1, t.getId() );
+        preparedStatement.setInt(1, t.getId());
         
-        if( AppConfig.getInstance().getConfig("settings", "verbose").equals("true") ) {
+        if (AppConfig.getInstance().getConfig("settings", "verbose").equals("true")) {
             System.out.println(preparedStatement);
         }
         
@@ -89,9 +88,9 @@ public class UsuarioDAO extends DataAccessObject <Usuario> {
         
         PreparedStatement preparedStatement = connection.prepareStatement(dql);
         
-        preparedStatement.setInt( 1,  (int) values[0] );
+        preparedStatement.setInt(1, (int) values[0]);
         
-        if( AppConfig.getInstance().getConfig("settings", "verbose").equals("true") ) {
+        if (AppConfig.getInstance().getConfig("settings", "verbose").equals("true")) {
             System.out.println(preparedStatement);
         }
         
@@ -99,14 +98,13 @@ public class UsuarioDAO extends DataAccessObject <Usuario> {
         
         boolean status = resultSet.next();
         
-        if( status == true ) {
+        if (status == true) {
+            resultado = new Usuario((int) resultSet.getObject(1));
             
-            resultado = new Usuario( (int) resultSet.getObject(1) );
-            
-            resultado.setNome( (String) resultSet.getObject(2) );
-            resultado.setEmail((String) resultSet.getObject(3) );
-            resultado.setSenhaHash( (String) resultSet.getObject(4) );
-            resultado.setPerfil((String) resultSet.getObject(5) );
+            resultado.setNome((String) resultSet.getObject(2));
+            resultado.setEmail((String) resultSet.getObject(3));
+            resultado.setSenhaHash((String) resultSet.getObject(4));
+            resultado.setTipoUsuarioId((int) resultSet.getObject(5)); // Corrigido para int
         }
         
         resultSet.close();
@@ -128,17 +126,15 @@ public class UsuarioDAO extends DataAccessObject <Usuario> {
 
         ResultSet resultSet = statement.executeQuery(dql);
         
-        while( resultSet.next() ) {
+        while (resultSet.next()) {
+            Usuario usuario = new Usuario((int) resultSet.getObject(1));
             
-            Usuario usuario = new Usuario( (int) resultSet.getObject( 1 ) );
-            
-            usuario.setNome( (String) resultSet.getObject( 2 ) );
-            usuario.setEmail((String) resultSet.getObject( 3 ) );
-            usuario.setSenhaHash( (String) resultSet.getObject( 4 ) );
-            usuario.setPerfil((String) resultSet.getObject(5) );
+            usuario.setNome((String) resultSet.getObject(2));
+            usuario.setEmail((String) resultSet.getObject(3));
+            usuario.setSenhaHash((String) resultSet.getObject(4));
+            usuario.setTipoUsuarioId((int) resultSet.getObject(5)); // Corrigido para int
             
             resultado.add(usuario);
-            
         }
         
         resultSet.close();
@@ -147,6 +143,4 @@ public class UsuarioDAO extends DataAccessObject <Usuario> {
         
         return resultado;
     }
-    
-    
 }

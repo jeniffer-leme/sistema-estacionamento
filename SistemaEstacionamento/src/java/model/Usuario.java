@@ -9,13 +9,12 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
-    private String perfil;
+    private int tipoUsuarioId; // Alterado de String perfil para int tipoUsuarioId
 
     public Usuario(int id) {
         setId(id);
     }
     
-
     public int getId() {
         return id;
     }
@@ -24,7 +23,6 @@ public class Usuario {
         if( id < 0 ) {
             throw new IllegalArgumentException("id não pode ser < 0");
         }
-        
         this.id = id;
     }
 
@@ -34,7 +32,7 @@ public class Usuario {
 
     public void setNome(String nome) {
         if( nome == null ) {
-            throw new IllegalArgumentException("nome não pode null");
+            throw new IllegalArgumentException("nome não pode ser null");
         }
         this.nome = nome;
     }
@@ -45,7 +43,7 @@ public class Usuario {
 
     public void setEmail(String email) {
         if( email == null ) {
-            throw new IllegalArgumentException("email não pode null");
+            throw new IllegalArgumentException("email não pode ser null");
         }
         this.email = email;
     }
@@ -54,7 +52,7 @@ public class Usuario {
         return senha;
     }
 
-    public void setSenha(String senha) throws NoSuchAlgorithmException,  UnsupportedEncodingException{
+    public void setSenha(String senha) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         if( senha == null ) {
             throw new IllegalArgumentException("senha não pode ser null");
         }
@@ -65,23 +63,20 @@ public class Usuario {
     }
     
     public void setSenhaHash(String senha) {
-        
         if( senha == null ) {
             throw new IllegalArgumentException("senha não pode ser null");
         }
         this.senha = senha;
     }
 
-    public String getPerfil() {
-        return perfil;
+    public int getTipoUsuarioId() {
+        return tipoUsuarioId;
     }
 
-    public void setPerfil(String perfil) {
-        if( perfil == null ) {
-            throw new IllegalArgumentException("perfil não pode ser null");
+    public void setTipoUsuarioId(int tipoUsuarioId) {
+        if( tipoUsuarioId < 0 ) {
+            throw new IllegalArgumentException("id_tipo_usuario não pode ser < 0");
         }
-        this.perfil = perfil;
+        this.tipoUsuarioId = tipoUsuarioId;
     }
-    
-    
 }

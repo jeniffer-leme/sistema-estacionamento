@@ -36,7 +36,7 @@
 
             <div class="login-corpo">
                 <p class="erro-texto"><%= esc(msg) %></p>
-                <a href="<%= request.getContextPath() %>/" class="btn-submit">Voltar ao login</a>
+                <a href="javascript:history.back()" class="btn-submit">Voltar</a>
             </div>
 
         </div>

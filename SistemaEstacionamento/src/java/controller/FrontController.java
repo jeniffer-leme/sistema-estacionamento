@@ -30,6 +30,8 @@ public class FrontController extends HttpServlet {
                 case "logout": doGetLogout(req, resp); break;
 
                 case "tipousuario": doGetTipoUsuario(req, resp); break;
+                
+                case "usuario": doGetUsuario(req, resp); break;
 
                 case null:
                 default:
@@ -53,9 +55,11 @@ public class FrontController extends HttpServlet {
         
             switch (task) {
 
-//                case "login": doPostLogin(req, resp); break;
+                case "login": doPostLogin(req, resp); break;
                 
                 case "tipousuario": doPostTipoUsuario(req, resp); break;
+                
+                case "usuario": doPostUsuario(req, resp); break;
 
                 case null:
                 default:
@@ -83,6 +87,7 @@ public class FrontController extends HttpServlet {
         HttpSession sessao = req.getSession(false);
         if( sessao != null ) {
             sessao.removeAttribute("tipo_usuario_sessao");
+            sessao.removeAttribute("usuario_sessao");
             sessao.invalidate();
         }
                 
@@ -112,46 +117,66 @@ public class FrontController extends HttpServlet {
         
     }
     
+    private void doGetUsuario(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        
+        String action = req.getParameter("action");
+        
+        if( ( action != null ) && ( action.equals("delete") ) ) {
+            
+            int id = Integer.parseInt( req.getParameter("id") );
+            
+            Usuario us = new Usuario(id); // bean
+            
+            UsuarioDAO dao = new UsuarioDAO(); // dao
+            
+            dao.delete(us);
+            
+        }
+        
+        req.getRequestDispatcher("/home/app/adm/usuario.jsp").forward(req, resp);
+        
+        
+    }
     
-    //FAZER USUÁRIO
-//    private void doPostLogin(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-//        
-//        int id = Integer.parseInt( req.getParameter("id") );
-//        String senha = req.getParameter("senha");
-//        
-//        UsuarioDAO dao = new UsuarioDAO(); // dao
-//        
-//        Usuario us = dao.getUnique(id);
-//        
-//        Usuario usTry = new Usuario(id);
-//        usTry.setSenha(senha);
-//        
-//        Cookie cookieId = new Cookie( "id", String.valueOf(id) );
-//        cookieId.setMaxAge( 60 * 2 ); // segundos
-//        resp.addCookie(cookieId);
-//        
-//        if( ( us != null ) && ( us.getSenha().equals( usTry.getSenha() ) )  ) {
-//            
-//            TipoUsuario usTp = new TipoUsuarioDAO().getUnique( us.getTipoUsuarioId() );
-//            
-//            HttpSession sessao = req.getSession(false);
-//            if( sessao != null ) {
-//                sessao.invalidate();
-//            }
-//            
-//            sessao = req.getSession(true);
-//            sessao.setMaxInactiveInterval( 60 * 10 ); // segundos
-//            sessao.setAttribute("tipo_usuario_sessao", usTp);
-//            sessao.setAttribute("usuario_sessao", us);
-//            
-//            req.getRequestDispatcher("/home/app/menu.jsp").forward(req, resp);            
-//            
-//        } else {
-//            req.setAttribute("msg", "id e/ou senha incorreto(s)!");
-//            req.getRequestDispatcher("/home/login.jsp").forward(req, resp);
-//        }
-//        
-//    }
+    
+    private void doPostLogin(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        
+        int id = Integer.parseInt( req.getParameter("id") );
+        String senha = req.getParameter("senha");
+        
+        UsuarioDAO dao = new UsuarioDAO(); // dao
+        
+        Usuario us = dao.getUnique(id);
+        
+        Usuario usTry = new Usuario(id);
+        usTry.setSenha(senha);
+        
+        Cookie cookieId = new Cookie( "id", String.valueOf(id) );
+        cookieId.setMaxAge( 60 * 2 ); // segundos
+        resp.addCookie(cookieId);
+        
+        if( ( us != null ) && ( us.getSenha().equals( usTry.getSenha() ) )  ) {
+            
+            TipoUsuario usTp = new TipoUsuarioDAO().getUnique( us.getTipoUsuarioId() );
+            
+            HttpSession sessao = req.getSession(false);
+            if( sessao != null ) {
+                sessao.invalidate();
+            }
+            
+            sessao = req.getSession(true);
+            sessao.setMaxInactiveInterval( 60 * 10 ); // segundos
+            sessao.setAttribute("tipo_usuario_sessao", usTp);
+            sessao.setAttribute("usuario_sessao", us);
+            
+            req.getRequestDispatcher("/home/app/menu.jsp").forward(req, resp);            
+            
+        } else {
+            req.setAttribute("msg", "id e/ou senha incorreto(s)!");
+            req.getRequestDispatcher("/home/login.jsp").forward(req, resp);
+        }
+        
+    }
     
     private void doPostTipoUsuario(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         
@@ -160,9 +185,9 @@ public class FrontController extends HttpServlet {
         int id = Integer.parseInt( req.getParameter("id") );
         String nome = req.getParameter("nome");
         
-        String moduloAdministrativo = req.getParameter("modulo_administrativo");
-        String moduloAtendimento = req.getParameter("modulo_atendimento");
-        String moduloOperacao = req.getParameter("modulo_operacao");
+        String moduloAdministrativo = req.getParameter("modulo_administrativo") != null ? "S" : "N";
+        String moduloAtendimento = req.getParameter("modulo_atendimento") != null ? "S" : "N";
+        String moduloOperacao = req.getParameter("modulo_operacao") != null ? "S" : "N";
         
         TipoUsuario usTp = new TipoUsuario(id); // bean
         usTp.setNome(nome);
@@ -177,6 +202,38 @@ public class FrontController extends HttpServlet {
         if( action.equals("update") ) dao.update( usTp );
         
         req.getRequestDispatcher("/home/app/adm/tipousuario.jsp").forward(req, resp);
+        
+    }
+    
+    private void doPostUsuario(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        
+        String action = req.getParameter("action"); // new || update
+        
+        int id = Integer.parseInt( req.getParameter("id") );
+        String nome = req.getParameter("nome"); // sem o tratamento do vazio como null
+        String email = req.getParameter("email");
+        String senha = req.getParameter("senha");
+        int tipoUsuarioId = Integer.parseInt( req.getParameter("tipo_usuario_id") );
+        
+        Usuario us = new Usuario(id); // bean
+        us.setNome(nome);
+        us.setEmail(email);
+        
+        if( senha.length() > 20 ) {
+            us.setSenhaHash(senha);
+        } else {
+            us.setSenha(senha);
+        }
+        
+        us.setTipoUsuarioId(tipoUsuarioId);
+        
+        UsuarioDAO dao = new UsuarioDAO(); // dao
+        
+        if( action.equals("new") ) dao.insert( us );
+        
+        if( action.equals("update") ) dao.update( us );
+        
+        req.getRequestDispatcher("/home/app/adm/usuario.jsp").forward(req, resp);
         
     }
     
