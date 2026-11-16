@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%!
-    //converter caracteres especiais da string em HTML
+    //converter caracteres especiais da string no meu código em HTML
     private static String esc(String s) {
         if (s == null) return "";
         return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
@@ -47,15 +47,13 @@
 
                     <div class="input-group">
                         <label for="id">ID do usuário</label>
-                        <input type="text" pattern="[0-9]*" inputmode="numeric" id="id" name="id"
-                               value="<%= esc(id) %>" placeholder="Digite apenas números" required>
+                        <input type="text" pattern="[0-9]*" inputmode="numeric" id="id" name="id" value="<%= esc(id) %>" placeholder="Digite apenas números" required>
                     </div>
 
                     <div class="input-group">
                         <label for="senha">Senha</label>
                         <div class="senha-campo">
-                            <input type="password" id="senha" name="senha"
-                                   placeholder="Digite sua senha" required>
+                            <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
                             <button type="button" class="btn-ver" id="btnVer">Mostrar</button>
                         </div>
                     </div>
