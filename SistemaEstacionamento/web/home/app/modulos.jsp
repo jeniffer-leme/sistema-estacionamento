@@ -24,6 +24,7 @@
             ( tipoUsuarioSessao.getModuloAdministrativo().equals("S") == true ) ) { %>
             
             <li><a href="/estacionamento/home/app/adm/tipousuario.jsp">Tipos Usuário</a></li>
+            <li><a href="/estacionamento/home/app/adm/usuario.jsp">Usuários</a></li>
             
     <% } %>
     

@@ -1,0 +1,218 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #eceae6;
+    color: #1b2236;
+}
+
+/* Área central da página */
+.pagina {
+    max-width: 900px;
+    margin: 28px auto;
+    padding: 0 20px;
+}
+
+.pagina.estreita {
+    max-width: 480px;
+}
+
+/* Cartão */
+.card {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(27, 34, 54, 0.12);
+}
+
+.card-topo {
+    background: #1946c9;
+    color: #fff;
+    padding: 20px 28px;
+    border-bottom: 5px solid #f2c230;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.card-topo h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.card-corpo {
+    padding: 28px 32px 32px;
+}
+
+/* Formulário */
+.input-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #444;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1.5px solid #d3d6dd;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #1946c9;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(25, 70, 201, 0.18);
+}
+
+input[readonly] {
+    background: #f3f4f7;
+    color: #6b7280;
+}
+
+/* Caixas de marcar (usadas no Tipo Usuário) */
+label.check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 8px;
+    padding: 10px 12px;
+    border: 1.5px solid #d3d6dd;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+label.check:hover {
+    background: #f5f7ff;
+}
+
+label.check input {
+    width: 18px;
+    height: 18px;
+    accent-color: #1946c9;
+}
+
+/* Botões */
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-submit {
+    background: #1946c9;
+    color: #fff;
+    border-bottom: 3px solid #11308f;
+}
+
+.btn-submit:hover { background: #1c4ee0; }
+
+.btn-claro {
+    background: #eef0f5;
+    color: #444;
+}
+
+.btn-claro:hover { background: #e0e3eb; }
+
+.btn-amarelo {
+    padding: 9px 16px;
+    background: #f2c230;
+    color: #1b2236;
+}
+
+.btn-amarelo:hover { background: #ffd24d; }
+
+.acoes-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.acoes-form .btn-submit { flex: 1; }
+
+/* Tabela */
+.tabela-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+th {
+    text-align: left;
+    padding: 12px 16px;
+    background: #f5f6fa;
+    color: #555;
+    font-weight: 600;
+    border-bottom: 1px solid #e2e5ec;
+}
+
+td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #eceef3;
+}
+
+tbody tr:hover { background: #f8f9ff; }
+
+.col-acoes {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.vazio {
+    text-align: center;
+    color: #777;
+    padding: 28px 16px;
+}
+
+/* Selo Sim / Não (usado no Tipo Usuário) */
+.badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge.sim { background: #e3f6e8; color: #1e7a3a; }
+.badge.nao { background: #eef0f5; color: #777; }
+
+/* Links da tabela */
+.link-alterar,
+.link-excluir {
+    margin-left: 12px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.link-alterar { color: #1946c9; }
+.link-excluir { color: #b3261e; }
+
+.link-alterar:hover,
+.link-excluir:hover { text-decoration: underline; }
+

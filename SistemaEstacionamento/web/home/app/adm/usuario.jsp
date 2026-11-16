@@ -2,54 +2,70 @@
 <%@page import="java.util.ArrayList" %>
 <%@page import="model.Usuario" %>
 <%@page import="model.UsuarioDAO" %>
+<%!
+    private static String esc(String s) {
+        if (s == null) return "";
+        return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+                .replace("\"", "&quot;").replace("'", "&#39;");
+    }
+%>
+<%
+    ArrayList<Usuario> lista = new UsuarioDAO().getAll();
+    String ctx = request.getContextPath();
+%>
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Usuários</title>
+        <link rel="stylesheet" href="<%= ctx %>/css/usuario.css">
     </head>
     <body>
-        
-        <% 
-            ArrayList<Usuario> lista = new UsuarioDAO().getAll();
-        %>
-        
+
         <%@include file="/home/app/modulos.jsp"%>
-        
-        <h1>Usuários</h1>
-        
-        <table>
-            
-            <tr>
-                <th>Id</th>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Senha</th>
-                <th>Tipo Usuário Id</th>
-                
-                <th></th>
-                <th></th>
-            </tr>
-            
-            <% for( Usuario us : lista ) { %>
-                <tr>
-                    
-                    <td><%= us.getId() %></td>
-                    <td><%= us.getNome() %></td>
-                    <td><%= us.getEmail()%></td>
-                    <td><%= us.getSenha()%></td>
-                    <td><%= us.getTipoUsuarioId()%></td>
-                    
-                    <td><a href="/estacionamento/home/app/adm/usuario_form.jsp?id=<%= us.getId() %>">Alterar</a></td>
-                    
-                    <td><a href="/estacionamento/home?task=usuario&action=delete&id=<%= us.getId()%>" onclick="return confirm('Deseja realmente excluir Usuário <%= us.getId() %> -- <%= us.getNome() %>')" >Excluir</a></td>
-                    
-                </tr>
-            <% } %>
-            
-        </table>
-            
-        <button onclick="window.location.href='/estacionamento/home/app/adm/usuario_form.jsp'">Adicionar</button>
-        
+
+        <div class="pagina">
+            <div class="card">
+
+                <div class="card-topo">
+                    <h1>Usuários</h1>
+                    <a href="<%= ctx %>/home/app/adm/usuario_form.jsp" class="btn btn-amarelo">+ Adicionar</a>
+                </div>
+
+                <div class="tabela-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Tipo Usuário Id</th>
+                                <th class="col-acoes">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (Usuario us : lista) { %>
+                                <tr>
+                                    <td><%= us.getId() %></td>
+                                    <td><%= esc(us.getNome()) %></td>
+                                    <td><%= esc(us.getEmail()) %></td>
+                                    <td><%= us.getTipoUsuarioId() %></td>
+                                    <td class="col-acoes">
+                                        <a class="link-alterar"
+                                           href="<%= ctx %>/home/app/adm/usuario_form.jsp?id=<%= us.getId() %>">Alterar</a>
+                                        <a class="link-excluir"
+                                           href="<%= ctx %>/home?task=usuario&action=delete&id=<%= us.getId() %>"
+                                           onclick="return confirm('Deseja realmente excluir o Usuário <%= us.getId() %>?')">Excluir</a>
+                                    </td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
     </body>
 </html>
