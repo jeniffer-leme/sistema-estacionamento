@@ -2,7 +2,6 @@ package controller;
 
 import framework.log.ExceptionLogTrack;
 import java.io.IOException;
-import jakarta.servlet.Filter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
@@ -13,6 +12,8 @@ import model.TipoUsuario;
 import model.TipoUsuarioDAO;
 import model.Usuario;
 import model.UsuarioDAO;
+import model.Vaga;
+import model.VagaDAO;
 
 public class FrontController extends HttpServlet {
     
@@ -32,6 +33,8 @@ public class FrontController extends HttpServlet {
                 case "tipousuario": doGetTipoUsuario(req, resp); break;
                 
                 case "usuario": doGetUsuario(req, resp); break;
+                
+                case "vaga": doGetVaga(req, resp); break;
 
                 case null:
                 default:
@@ -60,6 +63,8 @@ public class FrontController extends HttpServlet {
                 case "tipousuario": doPostTipoUsuario(req, resp); break;
                 
                 case "usuario": doPostUsuario(req, resp); break;
+                
+                case "vaga": doPostVaga(req, resp); break;
 
                 case null:
                 default:
@@ -134,6 +139,27 @@ public class FrontController extends HttpServlet {
         }
         
         req.getRequestDispatcher("/home/app/adm/usuario.jsp").forward(req, resp);
+        
+        
+    }
+    
+    private void doGetVaga(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        
+        String action = req.getParameter("action");
+        
+        if( ( action != null ) && ( action.equals("delete") ) ) {
+            
+            int id = Integer.parseInt( req.getParameter("id") );
+            
+            Vaga vg = new Vaga(id); // bean
+            
+            VagaDAO dao = new VagaDAO(); // dao
+            
+            dao.delete(vg);
+            
+        }
+        
+        req.getRequestDispatcher("/home/app/adm/vaga.jsp").forward(req, resp);
         
         
     }
@@ -234,6 +260,33 @@ public class FrontController extends HttpServlet {
         if( action.equals("update") ) dao.update( us );
         
         req.getRequestDispatcher("/home/app/adm/usuario.jsp").forward(req, resp);
+        
+    }
+    
+    private void doPostVaga(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        
+        String action = req.getParameter("action"); // new || update
+        
+        int id = Integer.parseInt( req.getParameter("id") );
+        String numero = req.getParameter("numero"); // sem o tratamento do vazio como null
+        String setor = req.getParameter("setor");
+        String tipo = req.getParameter("tipo");
+        String status = req.getParameter("status");
+        
+        Vaga vg = new Vaga(id); // bean
+        vg.setNumero(numero);
+        vg.setSetor(setor);
+        vg.setTipo(tipo);
+        vg.setStatus(status);
+        
+        
+        VagaDAO dao = new VagaDAO(); // dao
+        
+        if( action.equals("new") ) dao.insert( vg );
+        
+        if( action.equals("update") ) dao.update( vg );
+        
+        req.getRequestDispatcher("/home/app/adm/vaga.jsp").forward(req, resp);
         
     }
     

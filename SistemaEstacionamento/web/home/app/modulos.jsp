@@ -25,6 +25,7 @@
             
             <li><a href="/estacionamento/home/app/adm/tipousuario.jsp">Tipos Usuário</a></li>
             <li><a href="/estacionamento/home/app/adm/usuario.jsp">Usuários</a></li>
+            <li><a href="/estacionamento/home/app/adm/vaga.jsp">Vagas</a></li>
             
     <% } %>
     
