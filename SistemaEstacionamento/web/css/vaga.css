@@ -9,7 +9,6 @@ body {
     color: #1b2236;
 }
 
-/* Área central da página */
 .pagina {
     max-width: 900px;
     margin: 28px auto;
@@ -18,7 +17,6 @@ body {
 
 .pagina.estreita { max-width: 480px; }
 
-/* Cartão */
 .card {
     background: #fff;
     border-radius: 14px;
@@ -82,7 +80,6 @@ input[readonly] {
     color: #6b7280;
 }
 
-/* Botões */
 .btn {
     display: inline-block;
     padding: 12px 20px;
@@ -164,7 +161,7 @@ tbody tr:hover { background: #f8f9ff; }
     font-weight: 600;
 }
 
-/* Links da tabela */
+/* Link tabela */
 .link-alterar,
 .link-excluir {
     margin-left: 12px;
@@ -178,7 +175,7 @@ tbody tr:hover { background: #f8f9ff; }
 .link-alterar:hover,
 .link-excluir:hover { text-decoration: underline; }
 
-/* ---------- Variação asfalto (Vagas) ---------- */
+
 .card.asfalto .card-topo { background: #2b3240; }
 
 .card.asfalto .btn-submit {
@@ -196,7 +193,7 @@ tbody tr:hover { background: #f8f9ff; }
 
 .card.asfalto .link-alterar { color: #2b3240; }
 
-/* Número da vaga em formato de plaquinha */
+/* Número em plaquinha */
 .placa-vaga {
     display: inline-block;
     min-width: 48px;
@@ -209,7 +206,7 @@ tbody tr:hover { background: #f8f9ff; }
     background: #fff;
 }
 
-/* Cores de status */
+/* Cor status */
 .badge.st-livre      { background: #e3f6e8; color: #1e7a3a; }
 .badge.st-ocupada    { background: #fdecea; color: #b3261e; }
 .badge.st-manutencao { background: #fff4d6; color: #8a6200; }

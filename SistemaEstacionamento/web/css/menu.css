@@ -1,0 +1,71 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #eceae6;
+    color: #1b2236;
+}
+
+.pagina {
+    max-width: 900px;
+    margin: 28px auto;
+    padding: 0 20px;
+}
+
+.boas-vindas h1 {
+    margin: 0 0 4px;
+    font-size: 26px;
+}
+
+.boas-vindas p {
+    margin: 0 0 24px;
+    color: #5b6275;
+}
+
+/* Atalhos */
+.atalhos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.atalho {
+    display: block;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    border-top: 5px solid #1946c9;
+    box-shadow: 0 6px 18px rgba(27, 34, 54, 0.1);
+    color: #1b2236;
+    text-decoration: none;
+    transition: transform 0.15s;
+}
+
+.atalho:hover {
+    transform: translateY(-3px);
+}
+
+.atalho strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 18px;
+}
+
+.atalho span {
+    color: #5b6275;
+    font-size: 14px;
+}
+
+.atalho.azul    { border-top-color: #1946c9; }
+.atalho.verde   { border-top-color: #0f766e; }
+.atalho.asfalto { border-top-color: #2b3240; }
+
+.sem-modulo {
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    color: #5b6275;
+}

@@ -15,37 +15,37 @@
 
     boolean ehAdministrador = ( tipoUsuarioSessao != null ) && "S".equals( tipoUsuarioSessao.getModuloAdministrativo() );
 
-    String ctx = request.getContextPath();
+    String menuCtx = request.getContextPath();
     String uri = request.getRequestURI();
 %>
 
-<link rel="stylesheet" href="<%= ctx %>/css/modulos.css">
+<link rel="stylesheet" href="<%= menuCtx %>/css/modulos.css">
 
 <nav class="menu-barra">
     <div class="menu-conteudo">
 
-        <a class="menu-marca" href="<%= ctx %>/home/app/menu.jsp">
+        <a class="menu-marca" href="<%= menuCtx %>/home/app/menu.jsp">
             <span class="menu-p">P</span>Estacionamento
         </a>
 
         <a class="menu-link <%= uri.endsWith("/menu.jsp") ? "ativo" : "" %>"
-           href="<%= ctx %>/home/app/menu.jsp">Home</a>
+           href="<%= menuCtx %>/home/app/menu.jsp">Home</a>
 
         <% if( ehAdministrador ) { %>
             <a class="menu-link <%= uri.contains("/tipousuario") ? "ativo" : "" %>"
-               href="<%= ctx %>/home/app/adm/tipousuario.jsp">Tipos Usuário</a>
+               href="<%= menuCtx %>/home/app/adm/tipousuario.jsp">Tipos Usuário</a>
 
             <a class="menu-link <%= uri.contains("/usuario") ? "ativo" : "" %>"
-               href="<%= ctx %>/home/app/adm/usuario.jsp">Usuários</a>
+               href="<%= menuCtx %>/home/app/adm/usuario.jsp">Usuários</a>
 
             <a class="menu-link <%= uri.contains("/vaga") ? "ativo" : "" %>"
-               href="<%= ctx %>/home/app/adm/vaga.jsp">Vagas</a>
+               href="<%= menuCtx %>/home/app/adm/vaga.jsp">Vagas</a>
         <% } %>
 
         <span class="menu-espaco"></span>
 
         <span class="menu-usuario"><%= nomeUsuarioSessao %></span>
-        <a class="menu-sair" href="<%= ctx %>/home?task=logout">Sair</a>
+        <a class="menu-sair" href="<%= menuCtx %>/home?task=logout">Sair</a>
 
     </div>
 </nav>

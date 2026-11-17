@@ -8,6 +8,7 @@
                 .replace("\"", "&quot;").replace("'", "&#39;");
     }
 %>
+
 <%
     String action = "new";
     Usuario us = null;
@@ -17,6 +18,7 @@
         if (us != null) action = "update";
     }
 %>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
@@ -41,33 +43,27 @@
 
                         <div class="input-group">
                             <label for="id">Id</label>
-                            <input type="text" pattern="[0-9]*" id="id" name="id"
-                                   value="<%= us != null ? us.getId() : "" %>"
-                                   required <%= us != null ? "readonly" : "" %>>
+                            <input type="text" pattern="[0-9]*" id="id" name="id" value="<%= us != null ? us.getId() : "" %>" required <%= us != null ? "readonly" : "" %>>
                         </div>
 
                         <div class="input-group">
                             <label for="email">Email</label>
-                            <input type="text" id="email" name="email"
-                                   value="<%= us != null ? esc(us.getEmail()) : "" %>">
+                            <input type="text" id="email" name="email" value="<%= us != null ? esc(us.getEmail()) : "" %>">
                         </div>
 
                         <div class="input-group">
                             <label for="nome">Nome</label>
-                            <input type="text" id="nome" name="nome"
-                                   value="<%= us != null ? esc(us.getNome()) : "" %>">
+                            <input type="text" id="nome" name="nome" value="<%= us != null ? esc(us.getNome()) : "" %>">
                         </div>
 
                         <div class="input-group">
                             <label for="senha">Senha</label>
-                            <input type="password" id="senha" name="senha"
-                                   value="<%= us != null ? esc(us.getSenha()) : "" %>" required>
+                            <input type="password" id="senha" name="senha" value="<%= us != null ? esc(us.getSenha()) : "" %>" required>
                         </div>
 
                         <div class="input-group">
                             <label for="tipo_usuario_id">Tipo Usuário Id</label>
-                            <input type="text" pattern="[0-9]*" id="tipo_usuario_id" name="tipo_usuario_id"
-                                   value="<%= us != null ? us.getTipoUsuarioId() : "" %>" required>
+                            <input type="text" pattern="[0-9]*" id="tipo_usuario_id" name="tipo_usuario_id" value="<%= us != null ? us.getTipoUsuarioId() : "" %>" required>
                         </div>
 
                         <div class="acoes-form">

@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Vaga" %>
 <%@page import="model.VagaDAO" %>
+
 <%!
     private static String esc(String s) {
         if (s == null) return "";
@@ -16,6 +17,7 @@
         return s.substring(0, 1) + s.substring(1).toLowerCase();
     }
 %>
+
 <%
     String action = "new";
     Vaga vg = null;
@@ -31,6 +33,7 @@
     String tipoAtual = (vg != null) ? vg.getTipo() : "";
     String statusAtual = (vg != null) ? vg.getStatus() : "LIVRE";
 %>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
@@ -55,21 +58,17 @@
 
                         <div class="input-group">
                             <label for="id">Id</label>
-                            <input type="text" pattern="[0-9]*" id="id" name="id"
-                                   value="<%= vg != null ? vg.getId() : "" %>"
-                                   required <%= vg != null ? "readonly" : "" %>>
+                            <input type="text" pattern="[0-9]*" id="id" name="id" value="<%= vg != null ? vg.getId() : "" %>" required <%= vg != null ? "readonly" : "" %>>
                         </div>
 
                         <div class="input-group">
                             <label for="numero">Número da vaga</label>
-                            <input type="text" id="numero" name="numero" maxlength="10"
-                                   value="<%= vg != null ? esc(vg.getNumero()) : "" %>" required>
+                            <input type="text" id="numero" name="numero" maxlength="10" value="<%= vg != null ? esc(vg.getNumero()) : "" %>" required>
                         </div>
 
                         <div class="input-group">
                             <label for="setor">Setor</label>
-                            <input type="text" id="setor" name="setor" maxlength="30"
-                                   value="<%= vg != null ? esc(vg.getSetor()) : "" %>" required>
+                            <input type="text" id="setor" name="setor" maxlength="30" value="<%= vg != null ? esc(vg.getSetor()) : "" %>" required>
                         </div>
 
                         <div class="input-group">

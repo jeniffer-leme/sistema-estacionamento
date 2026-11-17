@@ -2,6 +2,7 @@
 <%@page import="java.util.ArrayList" %>
 <%@page import="model.Vaga" %>
 <%@page import="model.VagaDAO" %>
+
 <%!
     private static String esc(String s) {
         if (s == null) return "";
@@ -9,7 +10,7 @@
                 .replace("\"", "&quot;").replace("'", "&#39;");
     }
 
-    // Deixa o texto do banco mais bonito na tela (CARRO -> Carro)
+    // Tira o texto do CapsLock
     private static String rotulo(String s) {
         if (s == null || s.isEmpty()) return "";
         if (s.equals("MANUTENCAO")) return "Manutenção";
@@ -18,10 +19,12 @@
         return s.substring(0, 1) + s.substring(1).toLowerCase();
     }
 %>
+
 <%
     ArrayList<Vaga> lista = new VagaDAO().getAll();
     String ctx = request.getContextPath();
 %>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
@@ -71,10 +74,8 @@
                                         </span>
                                     </td>
                                     <td class="col-acoes">
-                                        <a class="link-alterar"
-                                           href="<%= ctx %>/home/app/adm/vaga_form.jsp?id=<%= vg.getId() %>">Alterar</a>
-                                        <a class="link-excluir"
-                                           href="<%= ctx %>/home?task=vaga&action=delete&id=<%= vg.getId() %>"
+                                        <a class="link-alterar" href="<%= ctx %>/home/app/adm/vaga_form.jsp?id=<%= vg.getId() %>">Alterar</a>
+                                        <a class="link-excluir" href="<%= ctx %>/home?task=vaga&action=delete&id=<%= vg.getId() %>"
                                            onclick="return confirm('Deseja realmente excluir a Vaga <%= esc(vg.getNumero()) %>?')">Excluir</a>
                                     </td>
                                 </tr>

@@ -9,10 +9,12 @@
                 .replace("\"", "&quot;").replace("'", "&#39;");
     }
 %>
+
 <%
     ArrayList<Usuario> lista = new UsuarioDAO().getAll();
     String ctx = request.getContextPath();
 %>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
