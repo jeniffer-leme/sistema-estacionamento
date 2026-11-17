@@ -1,0 +1,80 @@
+.menu-barra {
+    background: #1b2236;
+    border-bottom: 4px solid #f2c230;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.menu-conteudo {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.menu-marca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 16px;
+    padding: 12px 0;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.menu-p {
+    width: 28px;
+    height: 28px;
+    border: 2px solid #fff;
+    border-radius: 7px;
+    font-size: 17px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.menu-link {
+    padding: 8px 14px;
+    border-radius: 8px;
+    color: #cfd6ea;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.menu-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.menu-link.ativo {
+    background: #1946c9;
+    color: #fff;
+}
+
+.menu-espaco {
+    flex: 1;
+}
+
+.menu-usuario {
+    color: #9aa3bd;
+    font-size: 13px;
+    margin-right: 6px;
+}
+
+.menu-sair {
+    padding: 7px 14px;
+    background: #f2c230;
+    border-radius: 8px;
+    color: #1b2236;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.menu-sair:hover {
+    background: #ffd24d;
+}
